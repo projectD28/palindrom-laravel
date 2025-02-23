@@ -11,13 +11,20 @@ class PalindromController extends Controller
     {
         // mendapatkan word yg dikirim
         $Word = $request->word;
+
+        if ($Word == null) {
+            return response()->json([
+                "code" => 400,
+                "message" => "Not value"
+            ]);
+        }
         $WordStr = strtolower($Word);
 
-        $StraArray = array();
+        $StraArray = [];
         $StraArray = str_split($WordStr);
 
         $Index = sizeof($StraArray);
-        $Reverse = array();
+        $Reverse = [];
 
         for ($i = $Index - 1; $i >= 0; $i--) {
             $Reverse[] = $StraArray[$i];

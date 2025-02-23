@@ -11,7 +11,6 @@ class LanguageController extends Controller
     // Nomor 3 GET
     public function Index()
     {
-
         return response()->json(
             "Hello Go Developer"
         );
@@ -58,12 +57,12 @@ class LanguageController extends Controller
         );
     }
 
-    
+    // GET All Language
     public function IndexLanguage()
     {
         return response()->json(Session::all());
     }
-
+    // GET Language
     public function GetLanguage($id)
     {
         $languages =  Session::get('language');
@@ -74,10 +73,13 @@ class LanguageController extends Controller
         return response()->json(array_values($Data));
     }
 
+    // Create Language
     public function Created(Request $request)
     {
 
+        // Ambil data language 
         $languages = session("language", []);
+        // membuat urutan id
         $Id = count($languages) == null ? 1 : count($languages) + 1;
 
 
@@ -87,7 +89,7 @@ class LanguageController extends Controller
             "appeared" => $request->appeared,
             "created" => $request->created,
             "functional" => $request->functional,
-            "object-oriented" => false,
+            "object-oriented" => $request->input("object-oriented"),
             "relation" => $request->relation
         ];
 
@@ -99,13 +101,13 @@ class LanguageController extends Controller
             "message" => "success",
         ]);
     }
-
+    // Update data language
     public function Updated(Request $request, $id)
     {
 
         $languages =  Session::get('language');
 
-
+        
         $Data = collect($languages)->search(function ($lang) use ($id) {
             return $lang['id'] == $id;
         });
@@ -126,6 +128,7 @@ class LanguageController extends Controller
         ]);
     }
 
+    // Delete data language
     public function Deleted(Request $request, $id)
     {
         $languages =  Session::get('language');

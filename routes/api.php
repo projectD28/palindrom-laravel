@@ -25,7 +25,7 @@ Route::get('/language', [LanguageController::class, 'Language']);
 Route::get('/languages', [LanguageController::class, 'IndexLanguage']);
 Route::get('/get_languages/{id}', [LanguageController::class, 'GetLanguage']);
 Route::post('/create', [LanguageController::class, 'Created']);
-Route::put('/update/{id}', [LanguageController::class, 'Updated']);
+Route::patch('/update/{id}', [LanguageController::class, 'Updated']);
 Route::delete('/delete/{id}', [LanguageController::class, 'Deleted']);
 
 Route::get('/palindrome', [PalindromController::class, 'Palindrome']);
